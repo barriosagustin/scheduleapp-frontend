@@ -1,0 +1,5 @@
+.gradient-container {
+    width: 100%;
+    height: 40em;
+    background: linear-gradient(to right, #ff8a00, #da1b60);
+  }  

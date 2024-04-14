@@ -1,0 +1,40 @@
+/* Dashboard.css */
+
+/* Navbar */
+.navbar {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+  }
+  
+  /* User Dashboard */
+  .user-dashboard {
+    padding: 2rem;
+  }
+  
+  .user-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .user-card {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+  }
+  
+  .user-card h3 {
+    margin-top: 0;
+  }
+  
+  .user-card p {
+    margin: 0.5rem 0;
+  }
+  
+  .user-card strong {
+    font-weight: bold;
+  }
+  

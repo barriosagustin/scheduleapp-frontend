@@ -28,10 +28,10 @@ const UsersCard = () => {
           {user.map((user) => (
             <div key={user?._id} className="user-card">
               <h2>
-                {user.nombre} {user.apellido}
+                {user.name} {user.lastname}
               </h2>
               <p>Email: {user.email}</p>
-              <p>Phone: {user.telefono}</p>
+              <p>Phone: {user.cellphone}</p>
             </div>
           ))}
         </div>

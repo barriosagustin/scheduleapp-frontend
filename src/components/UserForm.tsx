@@ -1,19 +1,24 @@
 import React, { useState } from "react";
-import { TextField, Button, IconButton } from "@mui/material";
+import { TextField, Button, TextareaAutosize } from "@mui/material";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CalendarToday } from "@mui/icons-material";
+import CountrySelect from "./CountrySelect"; // Import the CountrySelect component
 import "../styles/UserFormStyles.css"; // Import CSS file directly
 
 const UserForm = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
+  const initialFormData = {
+    name: "",
+    lastname: "",
+    cellphone: "",
     email: "",
-    startDate: null,
-    endDate: null,
-  });
+    country: "",
+    current_country: "",
+    start_date: null,
+    // notes: ""
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -30,35 +35,60 @@ const UserForm = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleCountryChange = (selectedCountry: any) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      country: selectedCountry,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log(formData);
+    try {
+      const response = await fetch("https://scheduleapp-api.vercel.app/api/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        // Si la respuesta es exitosa, haz lo que necesites hacer
+        setFormData(initialFormData);
+        console.log("Datos enviados correctamente");
+      } else {
+        // Si hay algún problema con la solicitud
+        console.error("Error al enviar los datos");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
     <form className="form" onSubmit={handleSubmit}>
       <TextField
-        name="firstName"
+        name="name"
         label="First Name"
         variant="outlined"
-        value={formData.firstName}
+        value={formData.name}
         onChange={handleChange}
         required
       />
       <TextField
-        name="lastName"
+        name="lastname"
         label="Last Name"
         variant="outlined"
-        value={formData.lastName}
+        value={formData.lastname}
         onChange={handleChange}
         required
       />
       <TextField
-        name="phoneNumber"
+        name="cellphone"
         label="Phone Number"
         variant="outlined"
-        value={formData.phoneNumber}
+        value={formData.cellphone}
         onChange={handleChange}
         type="tel"
         required
@@ -72,10 +102,19 @@ const UserForm = () => {
         type="email"
         required
       />
+      <CountrySelect handleCountryChange={handleCountryChange} />      
+      <TextField
+        name="current_country"
+        label="Current country"
+        variant="outlined"
+        value={formData.current_country}
+        onChange={handleChange}
+        required
+      />
       <div className="date-picker-container">
         <DatePicker
-          selected={formData.startDate}
-          onChange={(date) => handleDateChange(date, "startDate")}
+          selected={formData.start_date}
+          onChange={(date) => handleDateChange(date, "start_date")}
           dateFormat="MM/dd/yyyy"
           placeholderText="Start Date"
           customInput={
@@ -83,32 +122,7 @@ const UserForm = () => {
               variant="outlined"
               fullWidth
               InputProps={{
-                endAdornment: (
-                  <IconButton>
-                    <CalendarToday />
-                  </IconButton>
-                ),
-              }}
-            />
-          }
-        />
-      </div>
-      <div className="date-picker-container">
-        <DatePicker
-          selected={formData.endDate}
-          onChange={(date) => handleDateChange(date, "endDate")}
-          dateFormat="MM/dd/yyyy"
-          placeholderText="End Date"
-          customInput={
-            <TextField
-              variant="outlined"
-              fullWidth
-              InputProps={{
-                endAdornment: (
-                  <IconButton>
-                    <CalendarToday />
-                  </IconButton>
-                ),
+                endAdornment: <CalendarToday />,
               }}
             />
           }

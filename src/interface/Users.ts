@@ -1,7 +1,10 @@
 export interface Users {
-    _id:string,
-    nombre:string,
-    apellido:string,
-    telefono:number,
-    email:string
+  _id: string;
+  name: string;
+  lastname: string;
+  cellphone: number;
+  email: string;
+  country: string;
+  current_country: string;
+  start_date: string;
   }
