@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { TextField, Button, TextareaAutosize } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CalendarToday } from "@mui/icons-material";
-import CountrySelect from "./CountrySelect"; // Import the CountrySelect component
-import "../styles/UserFormStyles.css"; // Import CSS file directly
+import CountrySelect from "./CountrySelect";
+import "../styles/UserFormStyles.css";
 
 const UserForm = () => {
   const initialFormData = {

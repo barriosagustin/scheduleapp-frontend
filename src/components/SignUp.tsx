@@ -47,17 +47,19 @@ const SignUp = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch("https://scheduleapp-api.vercel.app/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://scheduleapp-api.vercel.app/api/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
         console.log("User created successfully");
-        // Aquí podrías redirigir al usuario a una página de éxito o hacer cualquier otra acción necesaria
       } else {
         console.error("Error creating user:", response.statusText);
       }

@@ -1,4 +1,3 @@
-import React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -34,7 +33,6 @@ const Login = () => {
 
       if (response.ok) {
         console.log("Login successful");
-        // Aquí podrías redirigir al usuario a una página de éxito o hacer cualquier otra acción necesaria
         window.location.href = "/";
       } else {
         console.error("Login failed:", response.statusText);

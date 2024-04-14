@@ -7,7 +7,6 @@ interface CountrySelectProps {
   handleCountryChange: (selectedCountry: string) => void;
 }
 
-// export default function CountrySelect() {
 const CountrySelect: React.FC<CountrySelectProps> = ({
   handleCountryChange,
 }) => {
@@ -18,6 +17,7 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
       autoHighlight
       getOptionLabel={(option) => option.label}
       onChange={(event: any, selectedOption) => {
+        console.log(event);
         if (selectedOption) handleCountryChange(selectedOption?.label);
       }}
       renderOption={(props, option) => (

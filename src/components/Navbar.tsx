@@ -23,7 +23,6 @@ const Navbar: React.FC = () => {
             <IconButton>
               <Instagram sx={{ color: "#fff" }} />
             </IconButton>
-            {/* Agrega más íconos para otras redes sociales si es necesario */}
           </Grid>
         </Grid>
       </div>
